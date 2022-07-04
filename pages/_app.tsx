@@ -13,6 +13,8 @@ const clientSideEmotionCache = createEmotionCache();
 import { SWRConfig } from "swr";
 import axios from "axios";
 import { Nav } from "../src/components/Nav";
+import { Container } from "@mui/material";
+import Box from "@mui/material/Box";
 axios.defaults.baseURL = "http://localhost:4001";
 
 interface MyAppProps extends AppProps {
@@ -33,7 +35,11 @@ export default function MyApp(props: MyAppProps) {
         <SWRConfig
           value={{ fetcher: (url: string) => axios(url).then((r) => r.data) }}
         >
-          <Component {...pageProps} />
+          <Container maxWidth={false}>
+            <Box sx={{ mt: 2 }}>
+              <Component {...pageProps} />
+            </Box>
+          </Container>
         </SWRConfig>
       </ThemeProvider>
     </CacheProvider>

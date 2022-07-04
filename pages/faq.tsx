@@ -2,7 +2,14 @@ import { GetStaticProps } from "next";
 import React from "react";
 import { openDB } from "./openDB";
 import { FaqModel } from "./api/Faq";
-import { Button } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Button,
+} from "@mui/material";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 interface FaqProps {
   faq: FaqModel[];
@@ -12,12 +19,61 @@ export default function Faq({ faq }: FaqProps) {
   return (
     <div>
       {faq.map((f) => (
-        <div key={f.id}>
-          {f.question} | {f.answer}
-        </div>
+        <Accordion key={f.id}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`panel${f.id}-content`}
+            id={f.id + ""}
+          >
+            <Typography>{f.question}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>{f.answer}</Typography>
+          </AccordionDetails>
+        </Accordion>
       ))}
-      <Button variant="contained">Contained</Button>
     </div>
+    // <div>
+    //   <Accordion>
+    //     <AccordionSummary
+    //       expandIcon={<ExpandMoreIcon />}
+    //       aria-controls="panel1a-content"
+    //       id="panel1a-header"
+    //     >
+    //       <Typography>Accordion 1</Typography>
+    //     </AccordionSummary>
+    //     <AccordionDetails>
+    //       <Typography>
+    //         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+    //         malesuada lacus ex, sit amet blandit leo lobortis eget.
+    //       </Typography>
+    //     </AccordionDetails>
+    //   </Accordion>
+    //   <Accordion>
+    //     <AccordionSummary
+    //       expandIcon={<ExpandMoreIcon />}
+    //       aria-controls="panel1a-content"
+    //       id="panel1a-header"
+    //     >
+    //       <Typography>Accordion 2</Typography>
+    //     </AccordionSummary>
+    //     <AccordionDetails>
+    //       <Typography>
+    //         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+    //         malesuada lacus ex, sit amet blandit leo lobortis eget.
+    //       </Typography>
+    //     </AccordionDetails>
+    //   </Accordion>
+    //   <Accordion disabled>
+    //     <AccordionSummary
+    //       expandIcon={<ExpandMoreIcon />}
+    //       aria-controls="panel3a-content"
+    //       id="panel3a-header"
+    //     >
+    //       <Typography>Disabled Accordion</Typography>
+    //     </AccordionSummary>
+    //   </Accordion>
+    // </div>
   );
 }
 
