@@ -7,7 +7,7 @@ export function Nav() {
   return (
     <AppBar position="static">
       <Toolbar variant="dense">
-        <Typography variant="h6" >
+        <Typography variant="h6" sx={{ flexGrow: 1 }} >
           Car Trader
         </Typography>
 
