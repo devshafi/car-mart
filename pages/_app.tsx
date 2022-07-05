@@ -15,7 +15,7 @@ import axios from "axios";
 import { Nav } from "../src/components/Nav";
 import { Container } from "@mui/material";
 import Box from "@mui/material/Box";
-axios.defaults.baseURL = "http://localhost:4001";
+// axios.defaults.baseURL = "http://localhost:4001";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
