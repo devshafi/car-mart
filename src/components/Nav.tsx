@@ -8,12 +8,12 @@ export function Nav() {
     <AppBar position="static">
       <Toolbar variant="dense">
         <Typography variant="h6" sx={{ flexGrow: 1 }} >
-          Car Trader
+          Car Mart
         </Typography>
 
         <Button color="inherit">
           <Link href="/">
-            <a style={{ color: 'white' }}>
+            <a style={{ color: 'white', textDecoration:'none' }}>
               <Typography  color="inherit">
                 Home
               </Typography>
@@ -23,7 +23,7 @@ export function Nav() {
 
         <Button color="inherit">
           <Link href="/faq">
-            <a style={{ color: 'white' }}>
+            <a style={{ color: 'white',textDecoration:'none' }}>
               <Typography  color="inherit">
                 FAQ
               </Typography>
