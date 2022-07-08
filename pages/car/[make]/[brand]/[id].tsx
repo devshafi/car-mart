@@ -82,13 +82,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   //   id
   // );
 
-  // const car = await prisma.car.findFirst({
-  //   where: {
-  //     id: {
-  //       equals: getAsString(id!),
-  //     }
-  //   },
-  // });
+  const car = await prisma.car.findFirst({
+    where: {
+      id: {
+        equals: getAsString(id!),
+      }
+    },
+  });
   const car = {}
 
   return { props: { car: car || null } };
