@@ -13,7 +13,7 @@ model Faq {
   answer     String
   createDate DateTime @default(now())
 }
-
+ 
 model Car {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   make       String
