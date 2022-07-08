@@ -85,7 +85,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const car = await prisma.car.findFirst({
     where: {
       id: {
-        equals: getAsString(id!),
+        equals: getAsString(id!), 
       }
     },
   });
