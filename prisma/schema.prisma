@@ -1,28 +1,25 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev-car.db"
+  provider = "mongodb"
+  url      = "mongodb+srv://shafi:greenLizard03@practicecluster.1lndnyj.mongodb.net/car-mart-db?retryWrites=true&w=majority "
 }
 
 model Faq {
-  id         Int      @id @default(1)
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   question   String
   answer     String
   createDate DateTime @default(now())
 }
 
 model Car {
-  id         Int    @id @default(1)
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
   make       String
   model      String
-  year       String
-  kilometers String
+  year       Int
+  kilometers Int
   fuelType   String
   price      Int
   photoUrl   String

@@ -8,6 +8,7 @@ import { CarModel } from "../../../../src/models/Car";
 import Head from "next/head";
 
 import { PrismaClient } from "@prisma/client";
+import { getAsString } from './../../../../src/utils/getAsString';
 const prisma = new PrismaClient();
 
 interface CarDetailsProps {
@@ -84,8 +85,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const car = await prisma.car.findFirst({
     where: {
       id: {
-        equals: Number(id),
-      },
+        equals: getAsString(id!),
+      }
     },
   });
 
