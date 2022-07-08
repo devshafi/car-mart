@@ -8,15 +8,9 @@ import { Make } from "./../src/database/getMakes";
 import { Model } from "./../src/database/getModels";
 import { CarModel, CarsData } from "./../src/models/Car";
 import { getPaginatedCars } from "../src/database/getPaginatedCars";
-import {
-  Pagination,
-  PaginationItem,
-  PaginationRenderItemParams,
-} from "@mui/material";
-import { ParsedUrlQuery, stringify } from "querystring";
-import Link from "next/link";
+import { stringify } from "querystring";
 import { useRouter } from "next/router";
-import { forwardRef, useState } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 import { isEqual } from "lodash";
 import CarPagination from "./../src/components/CarPagination";

@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev-car.db"
+}
+
+model Faq {
+  id         Int      @id @default(1)
+  question   String
+  answer     String
+  createDate DateTime @default(now())
+}
+
+model Car {
+  id         Int    @id @default(1)
+  make       String
+  model      String
+  year       String
+  kilometers String
+  fuelType   String
+  price      Int
+  photoUrl   String
+  details    String
+}

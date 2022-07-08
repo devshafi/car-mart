@@ -4,9 +4,11 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import { GetServerSideProps } from "next";
-import { openDB } from "../../../openDB";
 import { CarModel } from "../../../../src/models/Car";
 import Head from "next/head";
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 interface CarDetailsProps {
   car: CarModel | null | undefined;
@@ -73,11 +75,19 @@ export default function CardDetails({ car }: CarDetailsProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const id = ctx.params?.id;
-  const db = await openDB();
-  const car = await db.get<CarModel | undefined>(
-    "SELECT * FROM Car where id = ?",
-    id
-  );
+  // const db = await openDB();
+  // const car = await db.get<CarModel | undefined>(
+  //   "SELECT * FROM Car where id = ?",
+  //   id
+  // );
+
+  const car = await prisma.car.findFirst({
+    where: {
+      id: {
+        equals: Number(id),
+      },
+    },
+  });
 
   return { props: { car: car || null } };
 };

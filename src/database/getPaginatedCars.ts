@@ -1,45 +1,57 @@
 import { ParsedUrlQuery } from "querystring";
-import { openDB } from "../../pages/openDB";
-import { CarModel } from "./../models/Car";
-import { getAsString } from "./../utils/getAsString";
 
-const mainQuery = ` 
-FROM car
-WHERE (@make is NULL OR @make = make)
-AND (@model is NULL OR @model = model)
-AND (@minPrice is NULL OR @minPrice <= price)
-AND (@maxPrice is NULL OR @maxPrice >= price)
-`;
+import { getAsString } from "./../utils/getAsString";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export async function getPaginatedCars(query: ParsedUrlQuery) {
-  const db = await openDB();
 
   const page = getValueNumber(query.page!) || 1;
   const rowsPerPage = getValueNumber(query.rowsPerPage!) || 4;
   const offset = (page - 1) * rowsPerPage;
 
-  const dbParams = {
-    "@make": getValueStr(query.make!),
-    "@model": getValueStr(query.model!),
-    "@minPrice": getValueNumber(query.minPrice!),
-    "@maxPrice": getValueNumber(query.maxPrice!),
+  const mainQuery = {
+    AND: [
+      {
+        make: {
+          equals: getValueStr(query.make!) || undefined,
+        },
+      },
+      {
+        model: {
+          equals: getValueStr(query.model!) || undefined,
+        },
+      },
+      {
+        price: {
+          gte: getValueNumber(query.minPrice!) || undefined,
+        },
+      },
+      {
+        price: {
+          lte: getValueNumber(query.maxPrice!) || undefined,
+        },
+      },
+    ],
   };
 
-  const carsPromise = await db.all<CarModel[]>(
-    `SELECT * ${mainQuery} LIMIT @rowsPerPage OFFSET @offset`,
-    {
-      ...dbParams,
-      "@rowsPerPage": rowsPerPage,
-      "@offset": offset,
-    }
-  );
-  const totalRowsPromise = await db.get<{ count: number }>(
-    `SELECT COUNT(*) as count ${mainQuery}`,
-    dbParams
-  );
-  const [cars, totalRows] = await Promise.all([carsPromise, totalRowsPromise]);
+  const dbCars = prisma.car.findMany({
+    skip: offset,
+    take: rowsPerPage,
+    where: mainQuery,
+    orderBy: {
+      price: "asc"
+    },
+  });
 
-  const totalPages = totalRows ? Math.ceil(totalRows.count / rowsPerPage) : 0;
+  const dbCarsCount = prisma.car.count({
+    where: mainQuery,
+  });
+
+
+  const [cars, count] = await Promise.all([dbCars, dbCarsCount]);
+
+  const totalPages = count ? Math.ceil(count / rowsPerPage) : 0;
 
   return { cars, totalPages };
 }

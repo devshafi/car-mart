@@ -1,6 +1,5 @@
 import { GetStaticProps } from "next";
 import React from "react";
-import { openDB } from "./openDB";
 import { FaqModel } from "../src/models/Faq";
 import {
   Accordion,
@@ -10,6 +9,9 @@ import {
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 interface FaqProps {
   faq: FaqModel[];
@@ -37,8 +39,9 @@ export default function Faq({ faq }: FaqProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const db = await openDB();
-  const faq = await db.all("SELECT * FROM FAQ ORDER BY createDate DESC");
+ 
+  const dbFaqs = await prisma.faq.findMany();
+  const faq = JSON.parse(JSON.stringify(dbFaqs));
 
   return { props: { faq } };
 };
