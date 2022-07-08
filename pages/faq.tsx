@@ -42,6 +42,6 @@ export const getStaticProps: GetStaticProps = async () => {
  
   const dbFaqs = await prisma.faq.findMany();
   const faq = JSON.parse(JSON.stringify(dbFaqs));
-
+ 
   return { props: { faq } };
 };
