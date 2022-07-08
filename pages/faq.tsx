@@ -10,8 +10,7 @@ import {
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { prisma } from '../db';
 
 interface FaqProps {
   faq: FaqModel[];

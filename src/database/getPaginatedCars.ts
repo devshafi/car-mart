@@ -1,8 +1,7 @@
 import { ParsedUrlQuery } from "querystring";
 
 import { getAsString } from "./../utils/getAsString";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { prisma } from '../../db';
 
 export async function getPaginatedCars(query: ParsedUrlQuery) {
 
