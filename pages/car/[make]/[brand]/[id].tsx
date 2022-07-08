@@ -89,7 +89,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     },
   });
-  const car = {}
 
   return { props: { car: car || null } };
 };
