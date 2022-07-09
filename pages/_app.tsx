@@ -4,7 +4,7 @@ import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import '../styles/globals.css';
+import "../styles/globals.css";
 import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 
@@ -39,7 +39,7 @@ export default function MyApp(props: MyAppProps) {
           value={{ fetcher: (url: string) => axios(url).then((r) => r.data) }}
         >
           <Container maxWidth={false}>
-            <Box sx={{ mt: 10 }}>
+            <Box sx={{ mt: 10, maxWidth:"1200px", mx:"auto" }}>
               <Component {...pageProps} />
             </Box>
           </Container>

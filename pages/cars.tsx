@@ -10,7 +10,7 @@ import { CarModel, CarsData } from "./../src/models/Car";
 import { getPaginatedCars } from "../src/database/getPaginatedCars";
 import { stringify } from "querystring";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { isEqual } from "lodash";
 import CarPagination from "./../src/components/CarPagination";
@@ -40,9 +40,13 @@ export default function CarsList({
       : undefined,
   });
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [data]);
+
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12} sm={5} md={4} lg={3}>
+    <Grid container spacing={3} >
+      <Grid sx={{ position: "sticky" }} item xs={12} sm={5} md={4} lg={3}>
         <Search singleColumn makes={makes} models={models} />
       </Grid>
 
@@ -59,7 +63,7 @@ export default function CarsList({
           {data?.totalPages! > 1 && (
             <CarPagination totalPages={data?.totalPages!} />
           )}
-          {data?.cars?.length ===0 && "No car found with this filter :("}
+          {data?.cars?.length === 0 && "No car found with this filter :("}
         </Grid>
       </Grid>
     </Grid>
