@@ -5,10 +5,12 @@ import Typography from "@mui/material/Typography";
 import { GetServerSideProps } from "next";
 import { CarModel } from "../../../../src/models/Car";
 import Head from "next/head";
+import { getAsString } from "./../../../../src/utils/getAsString";
+import { prisma } from "../../../../db";
 
-import { PrismaClient } from "@prisma/client";
-import { getAsString } from './../../../../src/utils/getAsString';
-const prisma = new PrismaClient();
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import SpeedIcon from "@mui/icons-material/Speed";
+import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 
 interface CarDetailsProps {
   car: CarModel | null | undefined;
@@ -50,18 +52,36 @@ export default function CardDetails({ car }: CarDetailsProps) {
                   {car.make + " " + car.model}
                 </Typography>
                 <Typography variant="h4" gutterBottom>
-                  £{car.price}
+                  ${car.price}
                 </Typography>
-                <Typography gutterBottom variant="body2" color="text.secondary">
-                  Year: {car.year}
-                </Typography>
-                <Typography gutterBottom variant="body2" color="text.secondary">
-                  KMs: {car.kilometers}
-                </Typography>
-                <Typography gutterBottom variant="body2" color="text.secondary">
-                  Fuel Type: {car.fuelType}
-                </Typography>
-                <Typography gutterBottom variant="body1" color="text.secondary">
+                <Grid sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+                  <CalendarMonthIcon fontSize="small" color="secondary" />
+                  <Typography
+                    sx={{ ml: 1 }}
+                    variant="body2"
+                  >
+                    Year: {car.year}
+                  </Typography>
+                </Grid>
+                <Grid sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+                  <SpeedIcon fontSize="small" color="secondary" />
+                  <Typography
+                    sx={{ ml: 1 }}
+                    variant="body2"
+                  >
+                    KMs: {car.kilometers}
+                  </Typography>
+                </Grid>
+                <Grid sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+                  <LocalGasStationIcon fontSize="small" color="secondary" />
+                  <Typography
+                    sx={{ ml: 1 }}
+                    variant="body2"   
+                  >
+                    Fuel Type: {car.fuelType}
+                  </Typography>
+                </Grid>
+                <Typography gutterBottom variant="body2">
                   Details Type: {car.details}
                 </Typography>
               </Grid>
@@ -79,7 +99,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     where: {
       id: {
         equals: getAsString(id!),
-      }
+      },
     },
   });
 
