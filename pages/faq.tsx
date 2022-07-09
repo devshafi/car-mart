@@ -46,7 +46,12 @@ export default function Faq({ faq }: FaqProps) {
           </Accordion>
         ))}
       </Grid>
-      <Grid  item sm={12} md={6} display={{xs: "none", sm: "none", md:"block" }}>
+      <Grid
+        item
+        sm={12}
+        md={6}
+        display={{ xs: "none", sm: "none", md: "block" }}
+      >
         <Box
           sx={{
             display: "flex",
