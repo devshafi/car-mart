@@ -52,9 +52,8 @@ export default function Search({ makes, models, singleColumn }: SearchProps) {
       {({ values }) => (
         <Form>
           <Paper
-            elevation={5}
+            elevation={1}
             sx={{
-              mt: 4,
               p: 2,
               marginLeft: "auto",
               marginRight: "auto",

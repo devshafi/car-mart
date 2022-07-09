@@ -6,7 +6,7 @@ import { prisma } from '../../db';
 export async function getPaginatedCars(query: ParsedUrlQuery) {
 
   const page = getValueNumber(query.page!) || 1;
-  const rowsPerPage = getValueNumber(query.rowsPerPage!) || 4;
+  const rowsPerPage = getValueNumber(query.rowsPerPage!) || 6;
   const offset = (page - 1) * rowsPerPage;
 
   const mainQuery = {

@@ -1,16 +1,12 @@
 import {
   Avatar,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   CardMedia,
-  Collapse,
-  IconButton,
 } from "@mui/material";
 import { CarModel } from "../models/Car";
 import Typography from "@mui/material/Typography";
-import { ExpandMore } from "@mui/icons-material";
 import Link from "next/link";
 
 export interface CarCardProps {
@@ -23,7 +19,7 @@ export default function CarCard({ car }: CarCardProps) {
       <a style={{ textDecoration: "none" }}>
         <Card>
           <CardHeader
-            avatar={<Avatar aria-label="recipe">R</Avatar>}
+            // avatar={<Avatar aria-label="recipe">R</Avatar>}
             title={car.make + " " + car.model}
             subheader={`£ ${car.price}`}
           />
@@ -35,7 +31,7 @@ export default function CarCard({ car }: CarCardProps) {
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {car.details}
+              {car.details.substring(0, 100)}
             </Typography>
           </CardContent>
         </Card>

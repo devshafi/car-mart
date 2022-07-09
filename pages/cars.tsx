@@ -40,11 +40,10 @@ export default function CarsList({
 
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12} sm={5} md={3} lg={2}>
+      <Grid item xs={12} sm={5} md={4} lg={3}>
         <Search singleColumn makes={makes} models={models} />
       </Grid>
-      <Grid item xs={12} sm={7} md={9} lg={10}>
-        <CarPagination totalPages={data?.totalPages!} />
+      <Grid item xs={12} sm={7} md={8} lg={9}>
         <Grid container spacing={3}>
           {data?.cars.map((car) => (
             <Grid key={car.id} item xs={12} sm={6} md={4}>
@@ -52,8 +51,7 @@ export default function CarsList({
             </Grid>
           ))}
         </Grid>
-
-        {/* <pre>{JSON.stringify({ data }, null, 4)}</pre> */}
+        <CarPagination totalPages={data?.totalPages!} />
       </Grid>
     </Grid>
   );
@@ -61,8 +59,6 @@ export default function CarsList({
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const make = getAsString(ctx.query.make!);
-  // const makes = await getMakes();
-  // const models = await getModels(make);
 
   const [makes, models, pagination] = await Promise.all([
     getMakes(),
