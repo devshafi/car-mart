@@ -15,6 +15,8 @@ import useSWR from "swr";
 import { isEqual } from "lodash";
 import CarPagination from "./../src/components/CarPagination";
 import CarCard from "../src/components/CarCard";
+import CardSkeleton from "../src/components/CardSkeleton";
+import CardSkeletons from "../src/components/CardSkeleton";
 
 export interface CarsListProps {
   makes: Make[];
@@ -44,21 +46,22 @@ export default function CarsList({
         <Search singleColumn makes={makes} models={models} />
       </Grid>
 
-      {!data && "loading..."}
-      {data && (
-        <Grid item xs={12} sm={7} md={8} lg={9}>
-          <Grid container spacing={2}>
-            {data?.cars.map((car) => (
-              <Grid key={car.id} item xs={12} sm={6} md={4}>
-                <CarCard car={car} />
-              </Grid>
-            ))}
-          </Grid>
-          <Grid container sx={{ my: 2, justifyContent: "center" }}>
-            <CarPagination totalPages={data?.totalPages!} />
-          </Grid>
+      <Grid item xs={12} sm={7} md={8} lg={9}>
+        <Grid container spacing={2}>
+          {!data && <CardSkeleton />}
+          {data?.cars.map((car) => (
+            <Grid key={car.id} item xs={12} sm={6} md={4}>
+              <CarCard car={car} />
+            </Grid>
+          ))}
         </Grid>
-      )}
+        <Grid container sx={{ my: 2, justifyContent: "center" }}>
+          {data?.totalPages! > 1 && (
+            <CarPagination totalPages={data?.totalPages!} />
+          )}
+          {data?.cars?.length ===0 && "No car found with this filter :("}
+        </Grid>
+      </Grid>
     </Grid>
   );
 }
