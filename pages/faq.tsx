@@ -14,6 +14,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { prisma } from "../db";
 import Grid from "@mui/material/Grid";
 import Image from "next/image";
+import Box from "@mui/material/Box";
 
 interface FaqProps {
   faq: FaqModel[];
@@ -23,7 +24,7 @@ export default function Faq({ faq }: FaqProps) {
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" fontWeight={"bold"} gutterBottom>
           Frequently asked questions
         </Typography>
         <Typography variant="body2" sx={{ mb: 3 }}>
@@ -45,14 +46,22 @@ export default function Faq({ faq }: FaqProps) {
           </Accordion>
         ))}
       </Grid>
-      <Grid item sm={12} md={6}>
-        <Image
-          src="/faq.svg"
-          width={"500px"}
-          height={"500px"}
-          alt=""
-          loading="lazy"
-        />
+      <Grid  item sm={12} md={6} display={{xs: "none", sm: "none", md:"block" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            src="/faq-ask.jpg"
+            height={"450px"}
+            width={"450px"}
+            objectFit="cover"
+            alt=""
+          />
+        </Box>
       </Grid>
     </Grid>
   );
