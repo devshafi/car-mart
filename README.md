@@ -4,8 +4,7 @@ This is a web application developed in Next.JS where people can search cars base
 
 ***
 
-**Live Site Link** : [Car Mart](https://car-mart.vercel.app/)
-
+### Live Site Link : [Car Mart](https://car-mart.vercel.app/) 
 
 
 ![image info](./public/git-photos/car-mart-photo-01.PNG)
