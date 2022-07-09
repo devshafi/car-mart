@@ -1,14 +1,18 @@
-import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { createTheme } from "@mui/material/styles";
+import { red, purple } from "@mui/material/colors";
+
 
 // Create a theme instance.
 const theme = createTheme({
+  typography: {
+    fontFamily: "Poppins, sans-serif",
+  },
   palette: {
     primary: {
-      main: '#556cd6',
+      main: purple[500],
     },
     secondary: {
-      main: '#19857b',
+      main: purple[300],
     },
     error: {
       main: red.A400,

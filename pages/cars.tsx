@@ -38,8 +38,6 @@ export default function CarsList({
       : undefined,
   });
 
-  // if (!data) return "loading...";
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} sm={5} md={4} lg={3}>
@@ -56,7 +54,9 @@ export default function CarsList({
               </Grid>
             ))}
           </Grid>
-          <CarPagination totalPages={data?.totalPages!} />
+          <Grid container sx={{ my: 2, justifyContent: "center" }}>
+            <CarPagination totalPages={data?.totalPages!} />
+          </Grid>
         </Grid>
       )}
     </Grid>
