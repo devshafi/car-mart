@@ -21,8 +21,8 @@ export default function CarCard({ car }: CarCardProps) {
       <a style={{ textDecoration: "none" }}>
         <Card variant="outlined">
           <CardHeader title={car.make + " " + car.model} />
-          <Grid sx={{ mx: 2, mt: -1, mb: 2, display: "flex", gap: ".5rem" }}>
-            <Typography >{`$ ${car.price}`}</Typography>
+          <Grid sx={{ mx: 2, mt: -1, mb: 2, display: "flex", gap: ".8rem" }}>
+            <Typography  >{`$${car.price}`}</Typography>
             <Chip
               size="small"
               color="secondary"
@@ -38,7 +38,7 @@ export default function CarCard({ car }: CarCardProps) {
             alt={car.make + " " + car.model}
           />
           <CardContent>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2">
               {car.details.substring(0, 100)}...
             </Typography>
           </CardContent>

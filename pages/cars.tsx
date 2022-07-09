@@ -47,7 +47,7 @@ export default function CarsList({
       {!data && "loading..."}
       {data && (
         <Grid item xs={12} sm={7} md={8} lg={9}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             {data?.cars.map((car) => (
               <Grid key={car.id} item xs={12} sm={6} md={4}>
                 <CarCard car={car} />

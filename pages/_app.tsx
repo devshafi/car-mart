@@ -38,7 +38,7 @@ export default function MyApp(props: MyAppProps) {
           value={{ fetcher: (url: string) => axios(url).then((r) => r.data) }}
         >
           <Container maxWidth={false}>
-            <Box sx={{ mt: 2 }}>
+            <Box sx={{ mt: 10 }}>
               <Component {...pageProps} />
             </Box>
           </Container>

@@ -5,7 +5,7 @@ import React from 'react';
 export function Nav() {
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar variant="dense">
         <Typography variant="h6" sx={{ flexGrow: 1 }} >
           Car Mart

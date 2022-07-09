@@ -15,6 +15,7 @@ export default function CarPagination({ totalPages }: { totalPages: number }) {
   return (
     <Pagination
       count={totalPages}
+      color="secondary"
       page={parseInt(getAsString(query.page!) || "1")}
       renderItem={(item) => (
         <PaginationItem
