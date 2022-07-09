@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = "mongodb+srv://shafi:greenLizard03@practicecluster.1lndnyj.mongodb.net/car-mart-db?retryWrites=true&w=majority "
+  url      = env("DATABASE_URL")
 }
 
 model Faq {
@@ -13,7 +13,7 @@ model Faq {
   answer     String
   createDate DateTime @default(now())
 }
- 
+
 model Car {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   make       String
