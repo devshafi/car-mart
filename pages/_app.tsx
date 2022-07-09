@@ -17,6 +17,7 @@ import { Nav } from "../src/components/Nav";
 import { Container } from "@mui/material";
 import Box from "@mui/material/Box";
 // axios.defaults.baseURL = "http://localhost:4001";
+import NextNProgress from "nextjs-progressbar";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -38,8 +39,10 @@ export default function MyApp(props: MyAppProps) {
         <SWRConfig
           value={{ fetcher: (url: string) => axios(url).then((r) => r.data) }}
         >
+         
           <Container maxWidth={false}>
-            <Box sx={{ mt: 10, maxWidth:"1200px", mx:"auto" }}>
+            <Box sx={{ mt: 10, maxWidth: "1200px", mx: "auto" }}>
+            <NextNProgress color="#ffffff" />
               <Component {...pageProps} />
             </Box>
           </Container>
