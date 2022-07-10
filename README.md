@@ -15,6 +15,7 @@ This is a web application developed in Next.JS where people can search cars base
   - getServerSideProps
   - getStaticProps
   - API routes
+  - SWR library for caching network request
 - MongoDB Database as data source
 - Prisma ORM for query data
 - TypeScript for type safe development experience
